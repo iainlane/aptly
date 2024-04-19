@@ -64,6 +64,10 @@ func aptlyPublishUpdate(cmd *commander.Command, args []string) error {
 		published.SkipBz2 = context.Flags().Lookup("skip-bz2").Value.Get().(bool)
 	}
 
+	if context.Flags().IsSet("acquire-by-hash") {
+		published.AcquireByHash = context.Flags().Lookup("acquire-by-hash").Value.Get().(bool)
+	}
+
 	err = published.Publish(context.PackagePool(), context, collectionFactory, signer, context.Progress(), forceOverwrite)
 	if err != nil {
 		return fmt.Errorf("unable to publish: %s", err)
@@ -119,6 +123,7 @@ Example:
 	cmd.Flag.Bool("skip-bz2", false, "don't generate bzipped indexes")
 	cmd.Flag.Bool("force-overwrite", false, "overwrite files in package pool in case of mismatch")
 	cmd.Flag.Bool("skip-cleanup", false, "don't remove unreferenced files in prefix/component")
+	cmd.Flag.Bool("acquire-by-hash", false, "provide index files by hash")
 
 	return cmd
 }
