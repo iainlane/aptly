@@ -1,4 +1,4 @@
-module github.com/aptly-dev/aptly
+module github.com/iainlane/aptly
 
 go 1.21
 
@@ -103,3 +103,5 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.40.2
 	github.com/aws/smithy-go v1.15.0
 )
+
+replace github.com/aptly-dev/aptly => github.com/iainlane/aptly v0.0.0-20240419172156-cc0f3bb00a20
